@@ -18,72 +18,63 @@ function writePassword() {
 //password generator code
 function generatePassword() {
   var finalpwd = ""
-  
-for (var 1 = 0; 1 <size.length; i++) {
-    finalpwd= finalpwd + size[randomIndex]
+  var combinedCharacters = ""
+
+  var size = prompt("Please enter 8 to 128 characters")
+  console.log(size)
+  //validation for checking
+
+  if (size >= 8 && size <= 128) {
+    var isLowerCase = confirm("Include Lowercase?")
+    console.log(isLowerCase)
+
+    var isUpperCase = confirm("Include Uppercase?")
+    console.log(isUpperCase)
+
+    var isNumber = confirm("Include Number?")
+    console.log(isNumber)
+
+    var isSpecial = confirm("Include Special Character?")
+    console.log(isSpecial)
+
+
+    if (isLowerCase === true) {
+      combinedCharacters=combinedCharacters.concat(lowercase)
+    }
+
+    if (isUpperCase === true) {
+      combinedCharacters=combinedCharacters.concat(uppercase)
+    }
+
+
+    if (isNumber === true) {
+     combinedCharacters=combinedCharacters.concat(number)
+    }
+
+    if (isSpecial === true) {
+      combinedCharacters=combinedCharacters.concat(special)
+
+    }
+
+
+    // do nothing
+    else {
+
+    }
+  }
+
+  else {
+    alert("invalid entry")
+
+  }
+
+  for (var i = 0; i < size; i++) {
+    var positionString = Math.floor(Math.random() * combinedCharacters.length)
+    finalpwd = finalpwd + combinedCharacters[positionString]
 
   }
 
   return finalpwd;
 }
-
-var size = prompt("Please enter 8 to 128 characters")
-console.log(size)
-//validation for checking
-
-if (size >= 8 && size <= 128) {
-  var isLowerCase = confirm("Include Lowercase?")
-  console.log(isLowerCase)
-
-  var isUpperCase = confirm("Include Uppercase?")
-  console.log(isUpperCase)
-
-  var isNumber = confirm("Include Number?")
-  console.log(isNumber)
-
-  var isSpecial = confirm("Include Special Character?")
-  console.log(isSpecial)
-
-
-  if (isLowerCase === true) {
-    var positionString = Math.floor(Math.random() * 26)
-    console.log(positionString)
-    finalpwd = finalpwd + lowercase[positionString]
-
-  }
-  if (isUpperCase === true) {
-    var positionString = Math.floor(Math.random() * 26)
-    console.log(positionString)
-    finalpwd = finalpwd + uppercase[positionString]
-  }
-
-
-  if (isNumber === true) {
-    var positionString = Math.floor(Math.random())
-    console.log(positionString)
-    finalpwd = finalpwd + number[positionString]
-
-  }
-
-  if (isSpecial === true) {
-    var positionString = Math.floor(Math.random())
-    console.log(positionString)
-    finalpwd = finalpwd + special[positionString]
-
-  }
-
-
-  // do nothing
-  else {
-
-  }
-}
-
-else {
-  alert("invalid entry")
-
-}
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-}
